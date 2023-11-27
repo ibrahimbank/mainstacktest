@@ -1,5 +1,5 @@
 // Function to get today's date
-import { transactionsInterface } from "@/src/api/types.tscomponent";
+import { transactionsInterface } from "../api/types";
 import React from "react";
 
 interface Transaction {
@@ -12,13 +12,13 @@ interface Transaction {
 }
 
 export function filterByDateRange(
-  transactions,
-  startDate,
-  endDate,
-  setFilteredData,
-  setFilterOptions,
-  setOpen
-): Transaction {
+  transactions: transactionsInterface[],
+  startDate: Date,
+  endDate: Date,
+  setFilteredData: React.Dispatch<React.SetStateAction<any>>,
+  setFilterOptions: React.Dispatch<React.SetStateAction<any>>,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+) {
   const t = transactions?.filter((entry) => {
     const entryDate = new Date(entry.date);
 
@@ -54,10 +54,10 @@ export const today: Date = getToday();
 
 // Filter data for today
 export const todayData = (
-  transactions,
-  setFilteredData,
-  setFilterOptions,
-  setOpen
+  transactions: transactionsInterface[],
+  setFilteredData: React.Dispatch<React.SetStateAction<any>>,
+  setFilterOptions: React.Dispatch<React.SetStateAction<any>>,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   filterByDateRange(
     transactions,
@@ -71,10 +71,10 @@ export const todayData = (
 
 // Filter data for the last 7 days
 export const last7DaysData = (
-  transactions,
-  setFilteredData,
-  setFilterOptions,
-  setOpen
+  transactions: transactionsInterface[],
+  setFilteredData: React.Dispatch<React.SetStateAction<any>>,
+  setFilterOptions: React.Dispatch<React.SetStateAction<any>>,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   console.log(transactions);
   filterByDateRange(
@@ -89,10 +89,10 @@ export const last7DaysData = (
 
 // Filter data for this month
 export const thisMonthData = (
-  transactions,
-  setFilteredData,
-  setFilterOptions,
-  setOpen
+  transactions: transactionsInterface[],
+  setFilteredData: React.Dispatch<React.SetStateAction<any>>,
+  setFilterOptions: React.Dispatch<React.SetStateAction<any>>,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   filterByDateRange(
     transactions,
@@ -106,10 +106,10 @@ export const thisMonthData = (
 
 // Filter data for the last three months
 export const lastThreeMonthsData = (
-  transactions,
-  setFilteredData,
-  setFilterOptions,
-  setOpen
+  transactions: transactionsInterface[],
+  setFilteredData: React.Dispatch<React.SetStateAction<any>>,
+  setFilterOptions: React.Dispatch<React.SetStateAction<any>>,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   filterByDateRange(
     transactions,
@@ -137,6 +137,7 @@ export function filterBySelectedTypes(
   }
 
   const t = data.filter((entry) => {
+    // @ts-ignore
     const entryType = entry?.[filterValue] || "";
 
     return selectedTypes.includes(entryType.toLowerCase());

@@ -1,16 +1,8 @@
 import { Box, Stack } from "@mui/material";
-import { LineChart } from "@/src/Component/Chartcomponent";
+import { LineChart } from "../../Component/Chart/index";
 import React from "react";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { transactionsInterface } from "@/src/api/types.tscomponent";
-
-interface WalletInterface {
-  balance: number;
-  total_payout: number;
-  total_revenue: number;
-  pending_payout: number;
-  ledger_balance: number;
-}
+import { WalletInterface, transactionsInterface } from "../../api/types";
 
 const Header = ({
   wallet,
@@ -62,7 +54,10 @@ const Header = ({
           }}
         >
           <Stack width={"100%"}>
-            <LineChart wallet={wallet} transactions={transactions} />
+            <LineChart
+              wallet={wallet}
+              transactions={transactions as unknown as transactionsInterface[]}
+            />
           </Stack>
           <Stack
             sx={{
@@ -75,7 +70,7 @@ const Header = ({
                 <Stack
                   width={"100%"}
                   spacing={2}
-                  data-walletId={`wallet-data-${id + 1}`}
+                  data-wallet-id={`wallet-data-${id + 1}`}
                 >
                   <Stack
                     direction={"row"}

@@ -10,6 +10,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Avatar, Box, Button, Stack, styled } from "@mui/material";
 import React from "react";
 import Link from "next/link";
+import { User } from "@/src/api/types";
 
 const MainWrapper = styled(Box)(
   ({ theme }) => `
@@ -44,11 +45,6 @@ export const AppButton = styled(Button)(() => ({
   transform: "capitalized",
 }));
 
-interface User {
-  first_name: string;
-  last_name: string;
-  email: string;
-}
 const Nav = ({ user }: { user: User }) => {
   return (
     <MainWrapper data-navid={"navbar"}>
@@ -90,7 +86,7 @@ const Nav = ({ user }: { user: User }) => {
                   borderRadius: "100px",
                 },
               }}
-              data-navtitleId={`navbar-titleId-${id + 1}`}
+              data-navtitle-id={`navbar-titleId-${id + 1}`}
               href={link.link}
               LinkComponent={Link}
             >

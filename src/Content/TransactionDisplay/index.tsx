@@ -9,7 +9,7 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import { BorderButton, IconButton } from "@/src/Component/Buttoncomponent";
+import { BorderButton, IconButton } from "@/src/Component/Button";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import SouthWestIcon from "@mui/icons-material/SouthWest";
@@ -19,9 +19,8 @@ import React, { useState } from "react";
 import {
   CustomDateInput,
   CustomMultiSelectTextField,
-} from "@/src/Component/SelectInputcomponent";
+} from "@/src/Component/SelectInput";
 import moment from "moment";
-import { transactionsInterface } from "@/src/api/types.tscomponent";
 import {
   filterByDateRange,
   filterBySelectedTypes,
@@ -29,9 +28,9 @@ import {
   lastThreeMonthsData,
   thisMonthData,
   todayData,
-} from "@/src/util/filterUtil.tsxcomponent";
-import { auto } from "@popperjs/core";
-import { EmptyState } from "@/src/Component/EmptyStatecomponent";
+} from "../../util/filterUtil";
+import { EmptyState } from "@/src/Component/EmptyState";
+import { transactionsInterface } from "@/src/api/types";
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -289,7 +288,14 @@ const TransactionDisplay = ({
                 text={"Clear"}
                 disable={false}
                 onClick={() => {
-                  filterByDateRange(transactions, selectedDate, endDate);
+                  filterByDateRange(
+                    transactions,
+                    selectedDate,
+                    endDate,
+                    setFilteredData,
+                    setFilterOptions,
+                    setOpen
+                  );
                 }}
               />
               <BorderButton
@@ -299,12 +305,8 @@ const TransactionDisplay = ({
                 height={"50px"}
                 text={"Apply"}
                 disable={filterOptions === ""}
-                background={
-                  (filterOptions === filterOptions) !== "" ? "#131316" : "auto"
-                }
-                color={
-                  (filterOptions === filterOptions) !== "" ? "#fff" : "#131316"
-                }
+                background={filterOptions !== "" ? "#131316" : "auto"}
+                color={filterOptions !== "" ? "#fff" : "#131316"}
                 onClick={() => {
                   if (filterOptions === "transType") {
                     filterBySelectedTypes(

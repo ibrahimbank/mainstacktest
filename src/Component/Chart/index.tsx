@@ -1,10 +1,17 @@
 import { Box, Stack } from "@mui/material";
-import { Chart } from "@/src/util/generalUtil.tsxcomponent";
+import { Chart } from "@/src/util/generalUtil.tsx";
 import { ApexOptions } from "apexcharts";
-import { OutlinedButton } from "@/src/Component/Buttoncomponent";
+import { OutlinedButton } from "@/src/Component/Button";
 import moment from "moment";
+import { WalletInterface, transactionsInterface } from "@/src/api/types";
 
-export const LineChart = ({ wallet, transactions }) => {
+export const LineChart = ({
+  wallet,
+  transactions,
+}: {
+  wallet: WalletInterface;
+  transactions: transactionsInterface[];
+}) => {
   const statusSeries = [
     {
       name: "Amount",

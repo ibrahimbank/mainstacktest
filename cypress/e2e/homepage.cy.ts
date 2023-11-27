@@ -7,20 +7,20 @@ describe("homepage spec", () => {
   it("renders the navbar list", () => {
     cy.visit("http://localhost:3000");
 
-    cy.get('[data-navtitleId="navbar-titleId-1"]').should("exist");
-    cy.get('[data-navtitleId="navbar-titleId-2"]').should("exist");
-    cy.get('[data-navtitleId="navbar-titleId-3"]').should("exist");
-    cy.get('[data-navtitleId="navbar-titleId-4"]').should("exist");
-    cy.get('[data-navtitleId="navbar-titleId-5"]').should("exist");
+    cy.get('[data-navtitle-id="navbar-titleId-1"]').should("exist");
+    cy.get('[data-navtitle-id="navbar-titleId-2"]').should("exist");
+    cy.get('[data-navtitle-id="navbar-titleId-3"]').should("exist");
+    cy.get('[data-navtitle-id="navbar-titleId-4"]').should("exist");
+    cy.get('[data-navtitle-id="navbar-titleId-5"]').should("exist");
   });
 
   it("renders the wallet list", () => {
     cy.visit("http://localhost:3000");
 
-    cy.get('[data-walletId="wallet-data-1"]').should("exist");
-    cy.get('[data-walletId="wallet-data-2"]').should("exist");
-    cy.get('[data-walletId="wallet-data-3"]').should("exist");
-    cy.get('[data-walletId="wallet-data-4"]').should("exist");
+    cy.get('[data-wallet-id="wallet-data-1"]').should("exist");
+    cy.get('[data-wallet-id="wallet-data-2"]').should("exist");
+    cy.get('[data-wallet-id="wallet-data-3"]').should("exist");
+    cy.get('[data-wallet-id="wallet-data-4"]').should("exist");
   });
 
   it("renders the transaction list", () => {

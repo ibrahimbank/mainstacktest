@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import { BorderButton, NoBorderButton } from "@/src/Component/Buttoncomponent";
+import { BorderButton, NoBorderButton } from "@/src/Component/Button";
 import React from "react";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 

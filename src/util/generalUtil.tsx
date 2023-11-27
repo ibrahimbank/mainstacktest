@@ -1,9 +1,7 @@
-import ArrowBackIosOutlined from '@mui/icons-material/ArrowBackIosOutlined';
-import { Button } from '@mui/material';
-import { createElement, ElementRef, ReactNode } from 'react';
-import Link from 'next/link';
-import { ReactComponentLike } from 'prop-types';
-import dynamic from 'next/dynamic';
+import ArrowBackIosOutlined from "@mui/icons-material/ArrowBackIosOutlined";
+import { Button } from "@mui/material";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 export function mergeObjectsFromArray(
   arr: {
@@ -32,57 +30,33 @@ export const convertToDetails = (
   return originalDetails?.reduce((result, { name, value }) => {
     const key = name
       .toLowerCase()
-      .split(' ')
+      .split(" ")
       .map((word, index) =>
         index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
       )
-      .join('');
+      .join("");
     result[key] = value;
     return result;
   }, {});
 };
 
 export const Back = ({ link }: { link: string }) => {
-
   return (
     <Button
       variant="outlined"
       startIcon={<ArrowBackIosOutlined />}
       LinkComponent={Link}
       sx={{
-        borderRadius: '8px',
-        border: '1px solid var(--primary-main, #001662)',
-        background: 'var(--common-white, #FDFDFD)',
-        ml: 'auto',
+        borderRadius: "8px",
+        border: "1px solid var(--primary-main, #001662)",
+        background: "var(--common-white, #FDFDFD)",
+        ml: "auto",
       }}
       href={link}
     >
-      {('Back')}
+      {"Back"}
     </Button>
   );
 };
 
-export const muiTableComponent = ({
-  DownloadIcon,
-  downloadIconRef,
-}: {
-  DownloadIcon: ReactComponentLike;
-  downloadIconRef: ElementRef<'svg'>;
-}) => {
-  return {
-    icons: {
-      DownloadIcon: (() =>
-        createElement(DownloadIcon, {
-          sx: {
-            pointerEvents: 'none',
-            'button! svg': {
-              backgroundColor: 'red',
-            },
-          },
-          ref: downloadIconRef,
-        })) as unknown as ReactNode,
-    },
-  };
-};
-
-export const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+export const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
