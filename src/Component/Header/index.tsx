@@ -3,6 +3,7 @@ import { LineChart } from "../../Component/Chart/index";
 import React from "react";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { WalletInterface, transactionsInterface } from "../../api/types";
+import { useMediaQuery } from "react-responsive";
 
 const Header = ({
   wallet,
@@ -11,6 +12,7 @@ const Header = ({
   wallet: WalletInterface;
   transactions: transactionsInterface;
 }) => {
+  const isPhone = useMediaQuery({ query: "(max-width: 765px)" });
   const walletData = [
     {
       name: "Ledger Balance",
@@ -31,14 +33,16 @@ const Header = ({
   ];
   return (
     <Stack direction={"row"} spacing={4}>
-      <Stack
-        direction={"row"}
-        alignItems={"flex-start"}
-        pt={"10rem"}
-        height={"100%"}
-      >
-        <img src="/asset/images/app%20bar.png" alt={"side bar"} />
-      </Stack>
+      {!isPhone && (
+        <Stack
+          direction={"row"}
+          alignItems={"flex-start"}
+          pt={"10rem"}
+          height={"100%"}
+        >
+          <img src="/asset/images/app%20bar.png" alt={"side bar"} />
+        </Stack>
+      )}
 
       <Box
         style={{

@@ -31,6 +31,7 @@ import {
 } from "../../util/filterUtil";
 import { EmptyState } from "@/src/Component/EmptyState";
 import { transactionsInterface } from "@/src/api/types";
+import { useMediaQuery } from "react-responsive";
 
 const MenuWrapper = styled(Box)(
   ({ theme }) => `
@@ -79,6 +80,8 @@ const TransactionDisplay = ({
     "Refer & Earn",
     "Deposit",
   ];
+  const isPhone = useMediaQuery({ query: "(max-width: 765px)" });
+
   const status = ["Successful", "Pending", "Failed"];
 
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -91,7 +94,7 @@ const TransactionDisplay = ({
   const [selectedType, setSelectedType] = React.useState<string[]>([]);
 
   return (
-    <Stack spacing={2} p={"0rem 5rem"}>
+    <Stack spacing={2} p={{ xs: "0 1rem", lg: "0rem 5rem" }}>
       <MenuWrapper>
         <Dialog
           open={open}
@@ -422,7 +425,7 @@ const TransactionDisplay = ({
           justifyContent={{ xs: "flex-start", lg: "flex-end" }}
         >
           <IconButton
-            width={"25%"}
+            width={isPhone ? "100%" : "25%"}
             text={"Filter"}
             onClick={() => {
               setOpen(true);
@@ -435,7 +438,7 @@ const TransactionDisplay = ({
             number={filteredData?.length === 0 ? 0 : filteredData?.length}
           />
           <IconButton
-            width={"30%"}
+            width={isPhone ? "100%" : "30%"}
             text={"Export list"}
             disable={false}
             icon={<SaveAltIcon sx={{ fontSize: "14px" }} />}
@@ -459,7 +462,7 @@ const TransactionDisplay = ({
           }
         />
       ) : (
-        <Stack spacing={3} style={{ margin: "32px 0px" }}>
+        <Stack spacing={3} style={{ margin: "32px 0px" }} width={"100%"}>
           {React.Children.toArray(
             (filteredData?.length !== 0 ? filteredData : transactions)?.map(
               (item, id) => (
@@ -486,7 +489,13 @@ const TransactionDisplay = ({
                       )}
                     </SuccessWrapper>
                     <Stack spacing={1}>
-                      <p>{item?.metadata?.product_name} </p>
+                      <p
+                        style={{
+                          fontSize: isPhone ? "14px" : "auto",
+                        }}
+                      >
+                        {item?.metadata?.product_name}{" "}
+                      </p>
                       {item?.type.toLowerCase() === "withdrawal" ? (
                         <p
                           style={{
@@ -494,19 +503,42 @@ const TransactionDisplay = ({
                               item?.status.toLowerCase() === "successful"
                                 ? "#0EA163"
                                 : "#A77A07",
+                            fontSize: isPhone ? "12px" : "auto",
                           }}
                         >
                           {item?.status}
                         </p>
                       ) : (
-                        <p>{item?.metadata?.name}</p>
+                        <p
+                          style={{
+                            fontSize: isPhone ? "12px" : "auto",
+                          }}
+                        >
+                          {item?.metadata?.name}
+                        </p>
                       )}
                     </Stack>
                   </Stack>
 
-                  <Stack spacing={1} alignItems={"flex-end"}>
-                    <h4>USD {item?.amount}</h4>
-                    <p> {moment(item?.date).format("MMM Do YYYY")}</p>
+                  <Stack
+                    spacing={1}
+                    alignItems={{ xs: "center", md: "flex-end" }}
+                  >
+                    <h4
+                      style={{
+                        fontSize: isPhone ? "12px" : "auto",
+                      }}
+                    >
+                      USD {item?.amount}
+                    </h4>
+                    <p
+                      style={{
+                        fontSize: isPhone ? "12px" : "auto",
+                      }}
+                    >
+                      {" "}
+                      {moment(item?.date).format("MMM Do YYYY")}
+                    </p>
                   </Stack>
                 </Stack>
               )

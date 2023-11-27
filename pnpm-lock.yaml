@@ -50,6 +50,9 @@ dependencies:
   react-query:
     specifier: ^3.39.3
     version: 3.39.3(react-dom@18.0.0)(react@18.0.0)
+  react-responsive:
+    specifier: ^9.0.2
+    version: 9.0.2(react@18.0.0)
   toast:
     specifier: ^0.5.4
     version: 0.5.4(react@18.0.0)
@@ -1403,6 +1406,10 @@ packages:
       which: 2.0.2
     dev: true
 
+  /css-mediaquery@0.1.2:
+    resolution: {integrity: sha512-COtn4EROW5dBGlE/4PiKnh6rZpAPxDeFLaEEwt4i10jpDMFt2EhQGS79QmmrO+iKCHv0PU/HrOWEhijFd1x99Q==}
+    dev: false
+
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
 
@@ -2088,6 +2095,10 @@ packages:
     engines: {node: '>=8.12.0'}
     dev: true
 
+  /hyphenate-style-name@1.0.4:
+    resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
+    dev: false
+
   /iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -2508,6 +2519,12 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.4
       remove-accents: 0.4.2
+    dev: false
+
+  /matchmediaquery@0.3.1:
+    resolution: {integrity: sha512-Hlk20WQHRIm9EE9luN1kjRjYXAQToHOIAHPJn9buxBwuhfTHoKUcX+lXBbxc85DVQfXYbEQ4HcwQdd128E3qHQ==}
+    dependencies:
+      css-mediaquery: 0.1.2
     dev: false
 
   /meow@6.1.1:
@@ -3067,6 +3084,19 @@ packages:
       react-dom: 18.0.0(react@18.0.0)
     dev: false
 
+  /react-responsive@9.0.2(react@18.0.0):
+    resolution: {integrity: sha512-+4CCab7z8G8glgJoRjAwocsgsv6VA2w7JPxFWHRc7kvz8mec1/K5LutNC2MG28Mn8mu6+bu04XZxHv5gyfT7xQ==}
+    engines: {node: '>=0.10'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      hyphenate-style-name: 1.0.4
+      matchmediaquery: 0.3.1
+      prop-types: 15.8.1
+      react: 18.0.0
+      shallow-equal: 1.2.1
+    dev: false
+
   /react-side-effect@2.1.2(react@18.0.0):
     resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
     peerDependencies:
@@ -3283,6 +3313,10 @@ packages:
       define-data-property: 1.1.1
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.1
+    dev: false
+
+  /shallow-equal@1.2.1:
+    resolution: {integrity: sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==}
     dev: false
 
   /shebang-command@1.2.0:
