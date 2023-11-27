@@ -448,7 +448,16 @@ const TransactionDisplay = ({
       <Divider />
 
       {filteredData?.length === 0 && filterOptions !== "" ? (
-        <EmptyState />
+        <EmptyState
+          setFilterOptions={
+            setFilterOptions as React.Dispatch<React.SetStateAction<string>>
+          }
+          setFilteredData={
+            setFilteredData as React.Dispatch<
+              React.SetStateAction<transactionsInterface[]>
+            >
+          }
+        />
       ) : (
         <Stack spacing={3} style={{ margin: "32px 0px" }}>
           {React.Children.toArray(

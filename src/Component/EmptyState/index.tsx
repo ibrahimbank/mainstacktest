@@ -2,8 +2,17 @@ import { Box, Stack } from "@mui/material";
 import { BorderButton, NoBorderButton } from "@/src/Component/Button";
 import React from "react";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
+import { transactionsInterface } from "@/src/api/types";
 
-export const EmptyState = () => {
+export const EmptyState = ({
+  setFilterOptions,
+  setFilteredData,
+}: {
+  setFilterOptions: React.Dispatch<React.SetStateAction<string>>;
+  setFilteredData: React.Dispatch<
+    React.SetStateAction<transactionsInterface[]>
+  >;
+}) => {
   return (
     <Stack
       width={"100%"}
@@ -73,6 +82,10 @@ export const EmptyState = () => {
           text={"Clear Filter"}
           color={"#131316"}
           disable={false}
+          onClick={() => {
+            setFilteredData([]);
+            setFilterOptions("");
+          }}
         />
       </Stack>
     </Stack>

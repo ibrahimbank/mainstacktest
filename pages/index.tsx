@@ -43,13 +43,10 @@ export default function Home() {
           wallet={wallet as unknown as WalletInterface}
           transactions={transactions as unknown as transactionsInterface}
         />
-        {filter.length !== 0 ? (
-          <TransactionDisplay
-            transactions={transactions as transactionsInterface[]}
-          />
-        ) : (
-          <EmptyState />
-        )}
+
+        <TransactionDisplay
+          transactions={transactions as transactionsInterface[]}
+        />
       </main>
     </>
   );
