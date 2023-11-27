@@ -7,10 +7,24 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
-import { Avatar, Box, Button, Stack, styled } from "@mui/material";
-import React from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  styled,
+} from "@mui/material";
+import React, { useState } from "react";
 import Link from "next/link";
 import { User } from "@/src/api/types";
+import { useMediaQuery } from "react-responsive";
+import { Close } from "@mui/icons-material";
 
 const MainWrapper = styled(Box)(
   ({ theme }) => `
@@ -46,6 +60,8 @@ export const AppButton = styled(Button)(() => ({
 }));
 
 const Nav = ({ user }: { user: User }) => {
+  const isPhone = useMediaQuery({ query: "(max-width: 765px)" });
+  const [open, setOpen] = useState(false);
   return (
     <MainWrapper data-navid={"navbar"}>
       <Stack
@@ -138,12 +154,63 @@ const Nav = ({ user }: { user: User }) => {
             <p>{user?.last_name.charAt(0)}</p>
           </AvatarWrapper>
           <MenuOutlinedIcon
+            onClick={() => {
+              setOpen(true);
+            }}
             sx={{
               color: "#56616B",
               cursor: "pointer",
             }}
           />
         </Box>
+        <Drawer
+          anchor={"top"}
+          open={open && isPhone}
+          onClose={() => {
+            setOpen(false);
+          }}
+        >
+          <Stack direction={"row"} justifyContent={"flex-end"} p={"1rem"}>
+            <Close
+              onClick={() => {
+                setOpen(false);
+              }}
+            />
+          </Stack>
+          <Stack
+            mb={"1rem"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            spacing={2}
+          >
+            {links.map((link, id) => (
+              <AppButton
+                sx={{
+                  width: "fit-content",
+                  background: "inherit",
+                  color: "#56616B",
+                  fontWeight: 600,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center !important",
+                  gap: "5px",
+                  fontSize: "14px !important",
+                  textTransform: "capitalize",
+                  "&:hover": {
+                    background: "#131316",
+                    color: "#fff",
+                    borderRadius: "100px",
+                  },
+                }}
+                data-navtitle-id={`navbar-titleId-${id + 1}`}
+                href={link.link}
+                LinkComponent={Link}
+              >
+                {link.icon} {link.name}
+              </AppButton>
+            ))}
+          </Stack>
+        </Drawer>
       </Stack>
     </MainWrapper>
   );
