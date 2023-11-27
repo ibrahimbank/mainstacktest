@@ -60,7 +60,7 @@ export const AppButton = styled(Button)(() => ({
 }));
 
 const Nav = ({ user }: { user: User }) => {
-  const isPhone = useMediaQuery({ query: "(max-width: 765px)" });
+  const isPhone = useMediaQuery({ query: "(max-width: 1200px)" });
   const [open, setOpen] = useState(false);
   return (
     <MainWrapper data-navid={"navbar"}>
