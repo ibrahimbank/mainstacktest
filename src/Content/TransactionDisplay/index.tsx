@@ -291,14 +291,8 @@ const TransactionDisplay = ({
                 text={"Clear"}
                 disable={false}
                 onClick={() => {
-                  filterByDateRange(
-                    transactions,
-                    selectedDate,
-                    endDate,
-                    setFilteredData,
-                    setFilterOptions,
-                    setOpen
-                  );
+                  setFilteredData([]);
+                  setFilterOptions("");
                 }}
               />
               <BorderButton
